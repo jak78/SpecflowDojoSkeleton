@@ -76,7 +76,5 @@ namespace Specs.Steps
             Assert.That(projet.Data.EnRetard, Is.True);
         }
 
-
-
     }
 }

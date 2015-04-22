@@ -139,44 +139,6 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("La partie n\'est pas perdue si il ne reste plus de charge après la date de release" +
-            "")]
-        public virtual void LaPartieNEstPasPerdueSiIlNeRestePlusDeChargeApresLaDateDeRelease()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("La partie n\'est pas perdue si il ne reste plus de charge après la date de release" +
-                    "", ((string[])(null)));
-#line 39
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Titre",
-                        "Charge"});
-            table5.AddRow(new string[] {
-                        "Souscrire un contrat",
-                        "0"});
-#line 41
- testRunner.Given("le projet \'Crocto\' démarrant le \'16/08/2014\', release prévue le \'17/08/2014\' et a" +
-                    "vec les stories suivantes", ((string)(null)), table5, "Etant donné ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Nom"});
-            table6.AddRow(new string[] {
-                        "Alice"});
-#line 45
- testRunner.And("l\'équipe \'A-Team\' est constituée de", ((string)(null)), table6, "Et ");
-#line 49
- testRunner.And("l\'équipe \'A-Team\' travaille sur le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Et ");
-#line 51
- testRunner.Given("le daily pour le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
-#line 53
- testRunner.When("la journée se termine", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quand ");
-#line 54
- testRunner.Then("le projet est terminé à temps", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Alors ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

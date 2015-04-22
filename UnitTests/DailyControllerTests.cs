@@ -44,10 +44,11 @@ namespace UnitTests
 
            _projetStore.Register(projet);
 
-            _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
+            var dailyDate = DateTime.Today;
+            _tested.Post(new Daily { Projet = "Crocto", Date = dailyDate, Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
 
-            var result = _tested.Get("Crocto", new DateTime(2012, 08, 17));
-            Assert.That(result.Date, Is.EqualTo(new DateTime(2012, 08, 17)));
+            var result = _tested.Get("Crocto",dailyDate);
+            Assert.That(result.Date, Is.EqualTo(dailyDate));
             Assert.That(result.Taches.Count(),Is.EqualTo(1));
         }
 

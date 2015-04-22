@@ -24,17 +24,11 @@ namespace WebApi.Controllers
             var project = _projectStore.Get(daily.Projet);
             if (project == null) return new HttpResponseMessage(HttpStatusCode.NotFound);
 
-            MetAJourLaDateDuDaily(daily, project);
+            _dailyStore.Register(daily);
 
             DecrementeLesChargesDesStories(daily, project);
 
             return new HttpResponseMessage(HttpStatusCode.OK);
-        }
-
-        private void MetAJourLaDateDuDaily(Daily daily, Projet project)
-        {
-            daily.Date = project.Date;
-            _dailyStore.Register(daily);
         }
 
         private void DecrementeLesChargesDesStories(Daily daily, Projet project)

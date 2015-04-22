@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ApiClient;
 using Model;
 using TechTalk.SpecFlow;
@@ -10,6 +11,7 @@ namespace Specs.Steps
     {
         private V1Client _client;
         private Daily _daily;
+        private DateTime _aujourdhui;
 
         public DailySteps(WebClientContext context)
         {
@@ -22,8 +24,8 @@ namespace Specs.Steps
             _daily = new Daily
             {
                 Projet = projet,
-                Taches = new Tache[0]
-
+                Taches = new Tache[0],
+                Date = _aujourdhui
             };
 
         }
