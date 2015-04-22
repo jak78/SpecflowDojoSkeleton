@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -24,6 +25,16 @@ namespace WebApi.Controllers
             if (project == null) return new HttpResponseMessage(HttpStatusCode.NotFound);
             daily.Date = project.Date;
             _dailyStore.Register(daily);
+
+            var storyADecrementer = from tache in daily.Taches
+                from story in project.Stories
+                where tache.Story == story.Titre
+                select story;
+            foreach (var story in storyADecrementer)
+            {
+                story.DecrementeCharge();
+            }
+            
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 

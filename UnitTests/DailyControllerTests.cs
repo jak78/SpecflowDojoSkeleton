@@ -52,6 +52,35 @@ namespace UnitTests
         }
 
         [Test]
+        public void Quand_je_poste_un_daily_avec_une_tache_alors_la_charge_de_la_story_baisse()
+        {
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 100), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
+
+            var actualProjet = _projetStore.Get("Crocto");
+            Assert.That(actualProjet.Stories.First().Charge, Is.EqualTo(99));
+        }
+
+        [Test]
+        public void Quand_je_poste_un_daily_avec_2_taches_sur_2_stories_alors_la_charge_des_2_stories_baisse()
+        {
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 100), new Story("Test 2", 200), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test", Par = "Alice" }, new Tache { Story = "Test 2", Par = "Alice" } } });
+
+            var actualProjet = _projetStore.Get("Crocto");
+            Assert.That(actualProjet.Stories.First().Charge, Is.EqualTo(99));
+            Assert.That(actualProjet.Stories.Last().Charge, Is.EqualTo(199));
+        }
+
+        [Test]
         public void Quand_je_poste_un_daily_pour_un_projet_qui_n_existe_pas_j_ai_une_400()
         {
             var result = _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });

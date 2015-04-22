@@ -41,7 +41,8 @@ namespace WebApi.Controllers
 
         public ProjetJson Get(string id)
         {
-            return ToProjetJson(_projetStore.Get(id));
+            var projet = _projetStore.Get(id);
+            return ToProjetJson(projet);
         }
     }
 }

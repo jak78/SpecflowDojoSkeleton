@@ -10,5 +10,10 @@ namespace Model
 
         public string Titre { get;private set; }
         public int Charge { get;private set; }
+
+        public void DecrementeCharge()
+        {
+            Charge--;
+        }
     }
 }
