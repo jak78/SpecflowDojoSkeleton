@@ -64,15 +64,9 @@ namespace Specs
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Quand un développeur travaille sur une story, la charge de travail restante sur l" +
-            "a story diminue")]
-        public virtual void QuandUnDeveloppeurTravailleSurUneStoryLaChargeDeTravailRestanteSurLaStoryDiminue()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Quand un développeur travaille sur une story, la charge de travail restante sur l" +
-                    "a story diminue", ((string[])(null)));
 #line 3
-this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Titre",
@@ -80,22 +74,41 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "Souscrire un contrat",
                         "2"});
-#line 5
- testRunner.Given("le projet \'Crocto\' avec les stories suivantes", ((string)(null)), table1, "Etant donné ");
+            table1.AddRow(new string[] {
+                        "Déclarer un sinistre",
+                        "10"});
+#line 4
+ testRunner.Given("le projet \'Crocto\' avec les stories suivantes", ((string)(null)), table1, "Soit ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Nom"});
             table2.AddRow(new string[] {
                         "Alice"});
+            table2.AddRow(new string[] {
+                        "Bob"});
 #line 9
  testRunner.Given("l\'équipe \'A-team\' est constituée de", ((string)(null)), table2, "Soit ");
-#line 13
+#line 14
  testRunner.And("l\'équipe \'A-team\' travaille sur le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Et ");
-#line 15
- testRunner.Given("le daily pour le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Quand un développeur travaille sur une story, la charge de travail restante sur l" +
+            "a story diminue")]
+        public virtual void QuandUnDeveloppeurTravailleSurUneStoryLaChargeDeTravailRestanteSurLaStoryDiminue()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Quand un développeur travaille sur une story, la charge de travail restante sur l" +
+                    "a story diminue", ((string[])(null)));
 #line 16
- testRunner.Given("que \'Alice\' travaille sur \'Souscrire un contrat\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
-#line 17
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 18
+ testRunner.Given("le daily pour le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
+#line 19
+ testRunner.And("que \'Alice\' travaille sur \'Souscrire un contrat\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Et ");
+#line 20
  testRunner.When("la journée se termine", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quand ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -104,7 +117,10 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Souscrire un contrat",
                         "1"});
-#line 18
+            table3.AddRow(new string[] {
+                        "Déclarer un sinistre",
+                        "10"});
+#line 21
  testRunner.Then("les stories du projet \'Crocto\' sont dans l\'état suivant", ((string)(null)), table3, "Alors ");
 #line hidden
             this.ScenarioCleanup();
@@ -115,42 +131,25 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void UneStoryEstTermineeLorsqueSaChargeAtteint0()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Une story est terminée lorsque sa charge atteint 0", ((string[])(null)));
-#line 22
+#line 26
 this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 28
+ testRunner.Given("le daily pour le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
+#line 29
+ testRunner.And("que \'Alice\' travaille sur \'Souscrire un contrat\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Et ");
+#line 30
+ testRunner.When("la journée se termine", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quand ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Titre",
                         "Charge"});
             table4.AddRow(new string[] {
-                        "Souscrire un contrat",
-                        "1"});
-            table4.AddRow(new string[] {
                         "Déclarer un sinistre",
-                        "2"});
-#line 24
- testRunner.Given("le projet \'Crocto\' avec les stories suivantes", ((string)(null)), table4, "Etant donné ");
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Nom"});
-            table5.AddRow(new string[] {
-                        "Alice"});
-#line 28
- testRunner.Given("l\'équipe \'A-team\' est constituée de", ((string)(null)), table5, "Soit ");
-#line 32
- testRunner.Given("le daily pour le projet \'Crocto\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
-#line 34
- testRunner.Given("que \'Alice\' travaille sur \'Souscrire un contrat\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Etant donné ");
-#line 35
- testRunner.When("la journée se termine", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quand ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Titre",
-                        "Charge"});
-            table6.AddRow(new string[] {
-                        "Déclarer un sinistre",
-                        "2"});
-#line 36
- testRunner.Then("les stories du projet \'Crocto\' sont dans l\'état suivant", ((string)(null)), table6, "Alors ");
+                        "10"});
+#line 31
+ testRunner.Then("les stories du projet \'Crocto\' sont dans l\'état suivant", ((string)(null)), table4, "Alors ");
 #line hidden
             this.ScenarioCleanup();
         }
