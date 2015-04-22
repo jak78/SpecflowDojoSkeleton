@@ -44,5 +44,18 @@ namespace Specs.Steps
             var result = _client.PosterDaily(_daily);
         }
 
+        [Then(@"le projet est terminé à temps")]
+        public void AlorsLeProjetEstTermineATemps()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"le projet est en retard")]
+        public void AlorsLeProjetEstEnRetard()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
     }
 }

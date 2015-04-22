@@ -9,7 +9,5 @@ namespace ApiClient
         public string Nom { get; set; }
         public List<StoryJson> Stories { get; set; }
         public DateTime Date { get; set; }
-        public bool Termine { get; set; }
-        public bool EnRetard { get; set; }
     }
 }

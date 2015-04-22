@@ -61,20 +61,5 @@ namespace Specs.Steps
             table.CompareToSet(result.Data.Stories);
         }
 
-        [Then(@"le projet est terminé à temps")]
-        public void AlorsLeProjetEstTermine()
-        {
-            var projet = _client.RecupererProjet(_projet.Nom);
-            Assert.That(projet.Data.EnRetard, Is.False);
-            Assert.That(projet.Data.Termine, Is.True);
-        }
-
-        [Then(@"le projet est en retard")]
-        public void AlorsLeProjetEstEnRetard()
-        {
-            var projet = _client.RecupererProjet(_projet.Nom);
-            Assert.That(projet.Data.EnRetard, Is.True);
-        }
-
     }
 }
