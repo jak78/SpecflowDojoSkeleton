@@ -8,23 +8,25 @@ namespace Database
 {
     public class Store<T>
     {
+        private const int DELAY_IN_MILLISECONDS = 1000;
+
         readonly List<T> _storage = new List<T>(); 
 
         public IEnumerable<T> GetAll()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(DELAY_IN_MILLISECONDS);
             return _storage;
         }
 
         public void Register(T toRegister)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(DELAY_IN_MILLISECONDS);
             _storage.Add(toRegister);
         }
 
         public void Delete(T toDelete)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(DELAY_IN_MILLISECONDS);
             _storage.Remove(toDelete);
         }
 
