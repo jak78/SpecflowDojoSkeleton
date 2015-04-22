@@ -19,5 +19,14 @@ namespace Model
         public DateTime Date { get; private set; }
         public IEnumerable<Story> Stories { get { return _stories.FindAll(x => x.Charge > 0); }}
         public string Nom { get; set; }
+
+        public bool Terminé()
+        {
+            return !Stories.Any();
+        }
+        public bool EnRetard(DateTime now)
+        {
+            return DateDeRelease < now && ! Terminé();
+        }
     }
 }

@@ -15,12 +15,12 @@ Scénario: La partie est gagnée si il n'y a plus de story avant la date de rele
 	Et que 'Alice' travaille sur 'Souscrire un contrat'
 	
 	Quand la journée se termine
-	Alors le projet est terminé
+	Alors le projet est terminé à temps
 
 
-Scénario: La partie est perdue si il reste de la charge le jour de la date de release
+Scénario: La partie est perdue si il reste de la charge après la date de release
 
-	Etant donné le projet 'Crocto' démarrant le '16/08/2014', release prévue le '17/08/2015' et avec les stories suivantes
+	Etant donné le projet 'Crocto' démarrant le '16/08/2014', release prévue le '17/08/2014' et avec les stories suivantes
 	| Titre                | Charge |
 	| Souscrire un contrat |     2  |
 
@@ -35,3 +35,20 @@ Scénario: La partie est perdue si il reste de la charge le jour de la date de r
 	
 	Quand la journée se termine
 	Alors le projet est en retard
+
+Scénario: La partie n'est pas perdue si il ne reste plus de charge après la date de release
+
+	Etant donné le projet 'Crocto' démarrant le '16/08/2014', release prévue le '17/08/2014' et avec les stories suivantes
+	| Titre                | Charge |
+	| Souscrire un contrat |     0  |
+
+	Et l'équipe 'A-Team' est constituée de 
+	| Nom   |
+	| Alice |
+
+	Et l'équipe 'A-Team' travaille sur le projet 'Crocto'
+	
+	Etant donné le daily pour le projet 'Crocto'
+	
+	Quand la journée se termine
+	Alors le projet est terminé à temps

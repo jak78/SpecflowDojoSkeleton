@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 using ApiClient;
@@ -30,13 +31,19 @@ namespace WebApi.Controllers
 
         private static ProjetJson ToProjetJson(Projet projet)
         {
-            return new ProjetJson
+            DateTime aujourdhui = DateTime.Today;
+            var terminé = projet.Terminé();
+            var enRetard = projet.EnRetard(aujourdhui);
+            var result = new ProjetJson
             {
                 Date = projet.Date,
                 DateDeRelease= projet.DateDeRelease,
                 Nom= projet.Nom,
-                Stories=projet.Stories.Select(s=>new StoryJson{Charge=s.Charge,Titre=s.Titre}).ToList()
+                Stories = projet.Stories.Select(s=>new StoryJson{Charge=s.Charge,Titre=s.Titre}).ToList(),
+                Termine = terminé,
+                EnRetard = enRetard,
             };
+            return result;
         }
 
         public ProjetJson Get(string id)

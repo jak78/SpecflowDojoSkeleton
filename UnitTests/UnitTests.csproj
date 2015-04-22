@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AffectationEquipeControllerTests.cs" />
+    <Compile Include="ProjetTests.cs" />
     <Compile Include="DailyControllerTests.cs" />
     <Compile Include="DummyProjetStore.cs" />
     <Compile Include="EquipeControllerTest.cs" />

@@ -8,7 +8,7 @@ namespace Database
 {
     public class Store<T>
     {
-        private const int DELAY_IN_MILLISECONDS = 1000;
+        private const int DELAY_IN_MILLISECONDS = 1;
 
         readonly List<T> _storage = new List<T>(); 
 
