@@ -105,5 +105,50 @@ namespace UnitTests
         
         }
 
+        [Test]
+        public void Quand_je_poste_un_daily_je_constate_que_la_partie_est_toujours_en_cours()
+        {
+            var dailyDate = new DateTime(2013, 1, 1);
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 100), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Date = dailyDate, Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
+
+            var result = _tested.Get("Crocto", dailyDate);
+            Assert.That(result.ResultatDePartie, Is.EqualTo("en cours"));
+        }
+
+        [Test]
+        public void Quand_je_poste_un_daily_je_constate_que_la_partie_est_gagnée()
+        {
+            var dailyDate = new DateTime(2013,1,1);
+
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 1), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Date = dailyDate, Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
+
+            var result = _tested.Get("Crocto", dailyDate);
+            Assert.That(result.ResultatDePartie, Is.EqualTo("gagnée"));
+        }
+
+        [Test]
+        public void Quand_je_poste_un_daily_je_constate_que_la_partie_est_perdue()
+        {
+            var dailyDate = new DateTime(2013, 8, 18);
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 2), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Date = dailyDate, Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });
+
+            var result = _tested.Get("Crocto", dailyDate);
+            Assert.That(result.ResultatDePartie, Is.EqualTo("perdue"));
+        }
     }
 }

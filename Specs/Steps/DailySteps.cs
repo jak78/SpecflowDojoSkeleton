@@ -2,6 +2,8 @@
 using System.Linq;
 using ApiClient;
 using Model;
+using NUnit.Framework;
+using RestSharp;
 using TechTalk.SpecFlow;
 
 namespace Specs.Steps
@@ -12,10 +14,17 @@ namespace Specs.Steps
         private V1Client _client;
         private Daily _daily;
         private DateTime _aujourdhui;
+        private IRestResponse<Daily> _result;
 
         public DailySteps(WebClientContext context)
         {
             _client = context.WebClient;
+        }
+
+        [Given(@"que nous sommes le '(.*)'")]
+        public void SoitQueNousSommesLe(DateTime date)
+        {
+            _aujourdhui = date;
         }
 
         [Given(@"le daily pour le projet '(.*)'")]
@@ -41,19 +50,15 @@ namespace Specs.Steps
         [When(@"la journée se termine")]
         public void QuandLaJourneeSeTermine()
         {
-            var result = _client.PosterDaily(_daily);
+            _client.PosterDaily(_daily);
+            _result = _client.RecupererDaily(_daily.Projet, _aujourdhui);
+            Assert.That(_result.Data, Is.Not.Null); // Sanity check
         }
 
-        [Then(@"le projet est terminé à temps")]
-        public void AlorsLeProjetEstTermineATemps()
+        [Then(@"la partie est (.*)")]
+        public void AlorsLaPartieEst(string resultat)
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"le projet est en retard")]
-        public void AlorsLeProjetEstEnRetard()
-        {
-            ScenarioContext.Current.Pending();
+            Assert.That(_result.Data.ResultatDePartie, Is.EqualTo(resultat));
         }
 
 

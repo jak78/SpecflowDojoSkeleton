@@ -54,5 +54,14 @@ namespace ApiClient
             restRequest.AddParameter("nomProjet", projet, ParameterType.UrlSegment);
             return _client.Execute<ProjetJson>(restRequest);
         }
+
+        public IRestResponse<Daily> RecupererDaily(string projet, DateTime date)
+        {
+            var restRequest = new RestRequest("Daily/{nomProjet}", Method.GET) { RequestFormat = DataFormat.Json };
+            restRequest.AddParameter("nomProjet", projet, ParameterType.UrlSegment);
+            restRequest.AddParameter("date", date, ParameterType.QueryString);
+            return _client.Execute<Daily>(restRequest);
+        }
     }
+
 }

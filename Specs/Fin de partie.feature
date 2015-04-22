@@ -1,5 +1,8 @@
 ﻿Fonctionnalité: Fin de partie
 
+Contexte: 
+	Etant donné que nous sommes le '01/01/2015'
+
 Scénario: La partie est gagnée si il n'y a plus de story avant la date de release
 
 	Etant donné le projet 'Crocto' démarrant le '17/08/2014', release prévue le '17/08/2015' et avec les stories suivantes
@@ -15,7 +18,7 @@ Scénario: La partie est gagnée si il n'y a plus de story avant la date de rele
 	Et que 'Alice' travaille sur 'Souscrire un contrat'
 	
 	Quand la journée se termine
-	Alors le projet est terminé à temps
+	Alors la partie est gagnée
 
 
 Scénario: La partie est perdue si il reste de la charge après la date de release
@@ -34,5 +37,5 @@ Scénario: La partie est perdue si il reste de la charge après la date de relea
 	Et que 'Alice' travaille sur 'Souscrire un contrat'
 	
 	Quand la journée se termine
-	Alors le projet est en retard
+	Alors la partie est perdue
 

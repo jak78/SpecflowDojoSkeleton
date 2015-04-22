@@ -28,6 +28,8 @@ namespace WebApi.Controllers
 
             DecrementeLesChargesDesStories(daily, project);
 
+            daily.DetermineResultatDeLaPartie(project);
+
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
