@@ -17,7 +17,7 @@ namespace Model
 
         public DateTime DateDeRelease { get; private set; }
         public DateTime Date { get; private set; }
-        public IEnumerable<Story> Stories { get { return _stories; }}
+        public IEnumerable<Story> Stories { get { return _stories.FindAll(x => x.Charge > 0); }}
         public string Nom { get; set; }
     }
 }

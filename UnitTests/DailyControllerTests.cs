@@ -81,6 +81,22 @@ namespace UnitTests
         }
 
         [Test]
+        public void Quand_la_charge_d_une_story_passe_a_zero_alors_elle_disparait()
+        {
+            var projet = new Projet("Crocto", new DateTime(2012, 08, 17), new DateTime(2013, 08, 17),
+                new[] { new Story("Test", 100), new Story("Test 2", 1), });
+
+            _projetStore.Register(projet);
+
+            _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test 2", Par = "Alice" } } });
+
+            var actualProjet = _projetStore.Get("Crocto");
+            Assert.That(actualProjet.Stories.Count(), Is.EqualTo(1));
+            Assert.That(actualProjet.Stories.First().Titre, Is.EqualTo("Test"));
+        }
+
+
+        [Test]
         public void Quand_je_poste_un_daily_pour_un_projet_qui_n_existe_pas_j_ai_une_400()
         {
             var result = _tested.Post(new Daily { Projet = "Crocto", Taches = new[] { new Tache { Story = "Test", Par = "Alice" } } });

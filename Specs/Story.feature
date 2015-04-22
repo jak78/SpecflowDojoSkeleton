@@ -5,6 +5,7 @@ Contexte: Composition du projet et de l'équipe
 	| Titre                | Charge |
 	| Souscrire un contrat | 2      |
 	| Déclarer un sinistre | 10     |
+	| Résilier un contrat  | 1      |
 
 	Soit l'équipe 'A-team' est constituée de 
 	| Nom   |
@@ -17,17 +18,20 @@ Scénario: Quand un développeur travaille sur une story, la charge de travail r
 
 	Etant donné le daily pour le projet 'Crocto'
 	Et que 'Alice' travaille sur 'Souscrire un contrat'
+	Et que 'Bob' travaille sur 'Déclarer un sinistre'
 	Quand la journée se termine
 	Alors les stories du projet 'Crocto' sont dans l'état suivant
 	| Titre                | Charge |
 	| Souscrire un contrat | 1      |
-	| Déclarer un sinistre | 10     |
+	| Déclarer un sinistre | 9      |
+	| Résilier un contrat  | 1      |
 
 Scénario: Une story est terminée lorsque sa charge atteint 0
 
 	Etant donné le daily pour le projet 'Crocto'
-	Et que 'Alice' travaille sur 'Souscrire un contrat'
+	Et que 'Alice' travaille sur 'Résilier un contrat'
 	Quand la journée se termine
 	Alors les stories du projet 'Crocto' sont dans l'état suivant
 	| Titre                | Charge |
+	| Souscrire un contrat | 2      |
 	| Déclarer un sinistre | 10     |

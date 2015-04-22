@@ -28,8 +28,8 @@ namespace UnitTests
                 DateDeDebut = new DateTime(2011, 8, 17),
                 Stories = new[]
                 {
-                    new StoryParam {Titre = "Libelle"},
-                    new StoryParam {Titre = "Glop"}
+                    new StoryParam {Titre = "Libelle", Charge = 1},
+                    new StoryParam {Titre = "Glop", Charge = 2}
                 }
             };
         }
