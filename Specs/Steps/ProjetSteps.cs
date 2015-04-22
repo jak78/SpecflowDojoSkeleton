@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ApiClient;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using WebApi.Controllers;
@@ -33,6 +34,20 @@ namespace Specs.Steps
         
         }
 
+        [Given(@"le projet '(.*)' démarrant le '(.*)', release prévue le '(.*)' et avec les stories suivantes")]
+        public void SoitLeProjetDemarrantLeReleasePrevueLeEtAvecLesStoriesSuivantes(string nomProjet, DateTime dateDeDemarrage, DateTime dateDeRelease, Table table)
+        {
+            _projet = new NouveauProjet
+            {
+                Nom = nomProjet,
+                Stories = table.CreateSet<StoryParam>().ToArray(),
+                DateDeDebut = dateDeDemarrage,
+                DateDeRelease = dateDeRelease
+            };
+
+            var result = _client.NouveauProjet(_projet);
+        }
+
         [Given(@"l'équipe '(.*)' travaille sur le projet '(.*)'")]
         public void SoitLCrocto(string equipe,string projet)
         {
@@ -45,6 +60,23 @@ namespace Specs.Steps
             var result = _client.RecupererProjet(projet);
             table.CompareToSet(result.Data.Stories);
         }
+
+        [Then(@"le projet est terminé")]
+        public void AlorsLeProjetEstTermine()
+        {
+            var projet = _client.RecupererProjet(_projet.Nom);
+            Assert.That(projet.Data.Termine, Is.True);
+            Assert.That(projet.Data.EnRetard, Is.False);
+        }
+
+        [Then(@"le projet est en retard")]
+        public void AlorsLeProjetEstEnRetard()
+        {
+            var projet = _client.RecupererProjet(_projet.Nom);
+            Assert.That(projet.Data.Termine, Is.True);
+            Assert.That(projet.Data.EnRetard, Is.True);
+        }
+
 
 
     }
