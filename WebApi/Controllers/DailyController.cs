@@ -23,9 +23,22 @@ namespace WebApi.Controllers
         {
             var project = _projectStore.Get(daily.Projet);
             if (project == null) return new HttpResponseMessage(HttpStatusCode.NotFound);
+
+            MetAJourLaDateDuDaily(daily, project);
+
+            DecrementeLesChargesDesStories(daily, project);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        private void MetAJourLaDateDuDaily(Daily daily, Projet project)
+        {
             daily.Date = project.Date;
             _dailyStore.Register(daily);
+        }
 
+        private void DecrementeLesChargesDesStories(Daily daily, Projet project)
+        {
             var storyADecrementer = from tache in daily.Taches
                 from story in project.Stories
                 where tache.Story == story.Titre
@@ -34,8 +47,6 @@ namespace WebApi.Controllers
             {
                 story.DecrementeCharge();
             }
-            
-            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         public Daily Get(string nomProjet, DateTime jour)
