@@ -59,7 +59,7 @@ namespace ApiClient
         {
             var restRequest = new RestRequest("Daily/{nomProjet}", Method.GET) { RequestFormat = DataFormat.Json };
             restRequest.AddParameter("nomProjet", projet, ParameterType.UrlSegment);
-            restRequest.AddParameter("date", date, ParameterType.QueryString);
+            restRequest.AddParameter("jour", date, ParameterType.QueryString);
             return _client.Execute<Daily>(restRequest);
         }
     }

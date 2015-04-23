@@ -45,9 +45,9 @@ namespace WebApi.Controllers
             }
         }
 
-        public Daily Get(string nomProjet, DateTime jour)
+        public Daily Get(string id, [FromUri] DateTime jour)
         {
-            return _dailyStore.Get(nomProjet, jour);
+            return _dailyStore.Get(id, jour);
         }
     }
 }
